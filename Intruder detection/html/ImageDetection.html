@@ -1,0 +1,198 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ImageDetection</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-05"><meta name="DC.source" content="ImageDetection.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Read in Images</a></li><li><a href="#2">Display Color Images</a></li><li><a href="#3">Convert Images to Black and White</a></li><li><a href="#4">Display Black and White Images</a></li><li><a href="#5">Subtract Images</a></li><li><a href="#6">Find Maximium Location of Difference</a></li><li><a href="#7">Use imtool to Determine Threshold and Length</a></li><li><a href="#8">Threshhold Image</a></li><li><a href="#9">Fill in Regions</a></li><li><a href="#10">Overlay Onto Original Image</a></li><li><a href="#11">Only Care About Things Large Than 80</a></li><li><a href="#12">Determine if Change is Significant</a></li></ul></div><h2>Read in Images<a name="1"></a></h2><pre class="codeinput">img1 = imread(<span class="string">'TestImage1.jpg'</span>);
+img2 = imread(<span class="string">'TestImage2.jpg'</span>);
+</pre><h2>Display Color Images<a name="2"></a></h2><pre class="codeinput">figure
+imshow(img1)
+figure
+imshow(img2)
+</pre><img vspace="5" hspace="5" src="ImageDetection_01.png" alt=""> <img vspace="5" hspace="5" src="ImageDetection_02.png" alt=""> <img vspace="5" hspace="5" src="ImageDetection_03.png" alt=""> <h2>Convert Images to Black and White<a name="3"></a></h2><pre class="codeinput">img1BW = rgb2gray(img1);
+img2BW = rgb2gray(img2);
+</pre><h2>Display Black and White Images<a name="4"></a></h2><pre class="codeinput">figure
+imshow(img1BW)
+figure
+imshow(img2BW)
+</pre><img vspace="5" hspace="5" src="ImageDetection_04.png" alt=""> <img vspace="5" hspace="5" src="ImageDetection_05.png" alt=""> <h2>Subtract Images<a name="5"></a></h2><pre class="codeinput">imgDiff = abs(img1BW - img2BW);
+<span class="comment">% imDiff = imsubtract(img1BW - img2BW);</span>
+figure
+imshow(imgDiff)
+</pre><img vspace="5" hspace="5" src="ImageDetection_06.png" alt=""> <h2>Find Maximium Location of Difference<a name="6"></a></h2><pre class="codeinput">maxDiff = max(max(imgDiff));
+[iRow,iCol] = find(imgDiff == maxDiff);
+[m,n] = size(imgDiff);
+
+imshow(imgDiff)
+hold <span class="string">on</span>
+plot(iCol,iRow,<span class="string">'r*'</span>)
+</pre><img vspace="5" hspace="5" src="ImageDetection_07.png" alt=""> <h2>Use imtool to Determine Threshold and Length<a name="7"></a></h2><pre class="codeinput">imtool(imgDiff)
+</pre><img vspace="5" hspace="5" src="ImageDetection_08.png" alt=""> <h2>Threshhold Image<a name="8"></a></h2><pre class="codeinput">imgThresh = imgDiff &gt; 8;
+figure
+imshow(imgThresh)
+hold <span class="string">on</span>
+plot(iCol,iRow,<span class="string">'r*'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="ImageDetection_09.png" alt=""> <h2>Fill in Regions<a name="9"></a></h2><pre class="codeinput">imgFilled = bwareaopen(imgThresh, 15);
+figure
+imshow(imgFilled)
+</pre><img vspace="5" hspace="5" src="ImageDetection_10.png" alt=""> <h2>Overlay Onto Original Image<a name="10"></a></h2><p>Utility from File Exchange</p><pre class="codeinput">imgBoth = imoverlay(img2,imgFilled,[1 0 0]);
+figure
+imshow(imgBoth)
+</pre><img vspace="5" hspace="5" src="ImageDetection_11.png" alt=""> <h2>Only Care About Things Large Than 80<a name="11"></a></h2><pre class="codeinput">imageStats = regionprops(imgFilled, <span class="string">'MajorAxisLength'</span>);
+
+imgLengths = [imageStats.MajorAxisLength];
+idx = imgLengths &gt; 80;
+imageStatsFinal = imageStats(idx);
+disp(imageStatsFinal)
+</pre><pre class="codeoutput">    MajorAxisLength: 107.0221
+
+</pre><h2>Determine if Change is Significant<a name="12"></a></h2><pre class="codeinput"><span class="keyword">if</span> isempty(imageStatsFinal)
+    disp(<span class="string">'Nothing Different Here'</span>)
+<span class="keyword">else</span>
+    disp(<span class="string">'Something is Here!'</span>)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Something is Here!
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Read in Images
+img1 = imread('TestImage1.jpg');
+img2 = imread('TestImage2.jpg');
+
+%%  Display Color Images
+figure
+imshow(img1)
+figure
+imshow(img2)
+
+%% Convert Images to Black and White
+img1BW = rgb2gray(img1);
+img2BW = rgb2gray(img2);
+
+%%  Display Black and White Images
+figure
+imshow(img1BW)
+figure
+imshow(img2BW)
+
+%% Subtract Images
+imgDiff = abs(img1BW - img2BW);
+% imDiff = imsubtract(img1BW - img2BW);
+figure
+imshow(imgDiff)
+
+%% Find Maximium Location of Difference
+maxDiff = max(max(imgDiff));
+[iRow,iCol] = find(imgDiff == maxDiff);
+[m,n] = size(imgDiff);
+
+imshow(imgDiff)
+hold on
+plot(iCol,iRow,'r*')
+
+%% Use imtool to Determine Threshold and Length
+imtool(imgDiff)
+
+%% Threshhold Image
+imgThresh = imgDiff > 8;
+figure
+imshow(imgThresh)
+hold on
+plot(iCol,iRow,'r*')
+hold off
+
+%% Fill in Regions
+imgFilled = bwareaopen(imgThresh, 15);
+figure
+imshow(imgFilled)
+
+%% Overlay Onto Original Image
+% Utility from File Exchange
+
+imgBoth = imoverlay(img2,imgFilled,[1 0 0]);
+figure
+imshow(imgBoth)
+
+%% Only Care About Things Large Than 80
+
+imageStats = regionprops(imgFilled, 'MajorAxisLength');
+
+imgLengths = [imageStats.MajorAxisLength];
+idx = imgLengths > 80;
+imageStatsFinal = imageStats(idx);
+disp(imageStatsFinal)
+
+%% Determine if Change is Significant
+
+if isempty(imageStatsFinal)
+    disp('Nothing Different Here')
+else
+    disp('Something is Here!')
+end
+
+
+##### SOURCE END #####
+--></body></html>
