@@ -1,4 +1,0 @@
-Intruder detection is the process of detecting intruders behind attacks as unique persons. 
-This technique tries to identify the person behind an attack by analyzing their computational behaviour.
-An intrustion detection system (IDS) is a software application or hardware appliance that monitors traffic moving 
-on networks and through systems to search for suspicious activity and known threats, sending up alerts when it finds such items.
