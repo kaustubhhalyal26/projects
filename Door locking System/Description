@@ -1,11 +1,11 @@
 The Door locking project is controlled by Arduino. 
 This is a simple password based door lock system using Arduino,
-Servo motor is used as a lock and 3*4 matrix keypad to enter the password.
+Servo motor is used as a lock and 4*3 matrix keypad to enter the password.
 ---------------------------------------------------------------------------------------------
 Component  Required:-
 ---------------------------------------------------------------------------------------------
 * Arduino Uno
-* 3*4 matrix keypad
+* 4*3 matrix keypad
 * Servomotor
 * 16*2 Lcd Display
 * Some jumper wire
