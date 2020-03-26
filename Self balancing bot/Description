@@ -1,5 +1,0 @@
-Self Balancing Robot is a Two-wheeled Robot that balances vertically using a closed-loop algorithm(PID). 
-This Self Balancing Robot Features various modes like Position Hold, Simple Mode, Rise Mode and Joystick Control. 
-This Robot is controlled using xbee. 
-Self Balancing robot uses data from the Accelerometer and Gyroscope to correct its orientation and position.
-The sensor used here is MPU6050.
