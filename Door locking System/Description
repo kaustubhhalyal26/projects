@@ -1,0 +1,10 @@
+This a simple password based door lock system using Arduino, servo motor is used to open 
+and close the lock and 4*3 matrix keypad is used to enter the password.
+---------------------------------------------------------------------------------------------
+Component  Required:-
+---------------------------------------------------------------------------------------------
+* Arduino Uno
+* 4*3 matrix keypad
+* Servomotor
+* 16*2 Lcd Display
+* Some jumper wire
