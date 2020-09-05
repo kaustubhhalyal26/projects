@@ -1,4 +1,0 @@
-This Project basically predict the gender of the speaker by analyzing different parameters of the voice sample. 
-It includes simple short-time auto-correlation values of male and female voice samples. 
-All this work is implemented through MATLAB programming. 
-A database can be created easily by collecting voice samples of different people, both male and female. 
