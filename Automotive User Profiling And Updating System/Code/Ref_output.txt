@@ -1,0 +1,23 @@
+yes/y or no/ny
+
+ [INFO] Initializing face capture. Look the camera and wait ...
+
+ [INFO] Exiting Program and cleanup stuff
+[ WARN:0] global C:\projects\opencv-python\opencv\modules\videoio\src\cap_msmf.cpp (674) SourceReaderCB::~SourceReaderCB terminating async callback
+
+ [INFO] Training faces. It will take a few seconds. Wait ...
+
+ [INFO] 3 faces trained. Exiting Program
+
+Input seat adjustments :
+adjust height  Height : 10
+adjust transverse position   Transverse : 50
+adjust backresting position   Backrest Angle : 100
+Input steering wheel height adjustment   Height : 11
+input side mirror angle adjustment   Angle : 45
+set light intensity88
+play next song [y/n]y
+play next song [y/n]y
+play next song [y/n]y
+play next song [y/n]y
+play next song [y/n]n
