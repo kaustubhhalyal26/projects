@@ -1,7 +1,0 @@
-Input seat adjustments :
-adjust height  Height : 10
-adjust transverse position   Transverse : 50
-adjust backresting position   Backrest Angle : 100
-Input steering wheel height adjustment   Height : 11
-input side mirror angle adjustment   Angle : 45
-set light intensity88
