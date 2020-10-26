@@ -1,5 +1,0 @@
-opevcv==4.2.0.32
-pyttsx3
-PIL
-numpy
-
